@@ -1,0 +1,9 @@
+google-genai
+python-gitlab
+fastapi
+uvicorn
+pyngrok
+# below are requirments for testing
+pytest
+dotenv
+# sqlalchemy # for testing, will change to use docker later
