@@ -17,11 +17,12 @@ To make sure our model provides good reviews and correct code suggestions we eva
 1. First we created different scenarios that will be used for evaluation. You can check them in the git folder: `evaluation/benchmarks`
 
 2. Second Evaluation Pipeline based on those scenarios:
-- creates new `MR`
-- creates new `unit_tests`
-- use our solution to solve the `MR`
-- finally provides the amount of sucessful `MR` based on the amount of passed tests.
-
+- Automatically generate test Scenarios (11, from easy to hard), and unit tests
+- Automatically generate MR
+- Use processing block to process and give code suggestions
+- Automatically apply the fixes and merge the MR
+- Execute unit tests before and after code suggestions fixes
+- Compare the result and report to the MR page
 
 #TODO Table here:
 
