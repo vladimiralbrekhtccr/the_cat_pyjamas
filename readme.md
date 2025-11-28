@@ -1,6 +1,6 @@
 Project for Hackathon Kita AI assistant for track "AI-Code Review Assistant".
 
-For this project we took real world bank related case from `https://github.com/confluentinc/confluent-kafka-go/pull/1493` where MR was merged. 
+For this project we took real world bank related case from https://github.com/confluentinc/confluent-kafka-go/pull/1493 where MR was merged. 
 
 For that we "git cloned" repo then uploaded to `gitlab` and created new branch with commits from MR --> created new MR and finally used our solution to prove that it works.
 
