@@ -24,7 +24,8 @@ To make sure our model provides good reviews and correct code suggestions we eva
 - Execute unit tests before and after code suggestions fixes
 - Compare the result and report to the MR page
 
-#TODO Table here:
+<img width="1048" height="588" alt="image" src="https://github.com/user-attachments/assets/2ee8ecc3-f716-45ea-b575-62046c3940ac" />
+
 
 
 ## Installation guide
