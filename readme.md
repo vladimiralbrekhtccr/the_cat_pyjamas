@@ -4,15 +4,27 @@ For this project we took real world bank related case from `https://github.com/c
 
 For that we "git cloned" repo then uploaded to `gitlab` and created new branch with commits from MR --> created new MR and finally used our solution to prove that it works.
 
-We evaluated our model using our `Evaluation Pipeline`. 
+Example of how our Agents provided `Review` and `Suggestions` for the MR.
+<img width="937" height="801" alt="image" src="https://github.com/user-attachments/assets/9e4245e3-36fa-426f-8d53-1d1df776831e" />
 
-1. First we created different scenarios that will be used for evaluation. You can check them in the folder: ``
+And finally after Junior fixed some code based on the Kita AI feedback. We show how our bode changes label from `changes_requested` to `ready-for-merge`
+<img width="907" height="650" alt="image" src="https://github.com/user-attachments/assets/bacaef06-4609-47b9-9633-d76e047ad14e" />
+
+To make sure our model provides good reviews and correct code suggestions we evaluated our model using our `Evaluation Pipeline`. 
+
+## Evaluation pipeline
+
+1. First we created different scenarios that will be used for evaluation. You can check them in the git folder: `evaluation/benchmarks`
 
 2. Second Evaluation Pipeline based on those scenarios:
 - creates new `MR`
 - creates new `unit_tests`
 - use our solution to solve the `MR`
 - finally provides the amount of sucessful `MR` based on the amount of passed tests.
+
+
+#TODO Table here:
+
 
 ## Installation guide
 
@@ -26,7 +38,7 @@ pip install -r requirements.txt
 cp .env.example .env
 ```
 
-## Pipeline
+## Our Solution Pipeline
 
 <img width="504" height="568" alt="image" src="https://github.com/user-attachments/assets/32c4dab7-5c0c-42bf-b7f1-c6daba53b0f0" />
 
@@ -50,8 +62,7 @@ You will need to first connect the bot to GitLab repository, also make sure to s
 After that you will be able to see the changes in the MR and commits in the GitLab repository with label by the Kita bot `reade-for-merge`.
 
 
-![alt text](image.png)
+<img width="907" height="650" alt="image" src="https://github.com/user-attachments/assets/bacaef06-4609-47b9-9633-d76e047ad14e" />
 
 
-## Evaluation pipeline
 
