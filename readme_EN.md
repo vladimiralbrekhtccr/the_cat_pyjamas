@@ -14,7 +14,7 @@ To make sure our model provides good reviews and correct code suggestions we eva
 
 ## Evaluation pipeline
 
-1. First we created different scenarios that will be used for evaluation. You can check them in the git folder: `evaluation/benchmarks`
+1. First we created different scenarios that will be used for evaluation. You can check them in the git folder: `evaluation_pipeline/benchmarks`
 
 2. Second Evaluation Pipeline based on those scenarios:
 - Automatically generate test Scenarios (11, from easy to hard), and unit tests
