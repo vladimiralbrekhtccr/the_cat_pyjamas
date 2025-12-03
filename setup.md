@@ -8,6 +8,8 @@ uv pip install -r requirements.txt
 
 Inside folder scripts you can run of of those:
 
+Make sure to run it from main git folder.
+
 ```bash
 bash scripts/run_evaluation.sh
 bash scripts/run_webhook.sh
