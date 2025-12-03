@@ -1,0 +1,1558 @@
+
+🚀 STARTING SUITE WITH CONTEXT: 11 Scenarios Queued.
+
+============================================================
+▶️  RUNNING CASE 1/11: DEPOSIT_LOGIC_ERROR_1
+    Source: scenarios1.py
+============================================================
+📁 Local Test Environment created at: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmp405dx6rh
+🧹 Cleaning up old projects...
+   ✅ Deleted DEPOSIT_LOGIC_ERROR_1-1764782431
+
+1️⃣  [Setup] Creating GitLab Repo & MR...
+   ✅ Created: https://gitlab.com/vladimiralbrekhtccr-group/DEPOSIT_LOGIC_ERROR_1-1764782464
+   ✅ MR created: https://gitlab.com/vladimiralbrekhtccr-group/DEPOSIT_LOGIC_ERROR_1-1764782464/-/merge_requests/1
+
+📊 [Context Generation] Analyzing repository...
+📊 Analyzing repository: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmp16vktgzs
+   📁 Found 5 relevant files
+   ✅ Selected 5 files for context
+   ✅ Analyzed 5 files
+🤖 Generating repository context with LLM...
+   Using: Google Gemini - gemini-flash-latest
+   ✅ Generated context (2012 characters)
+   ✅ Generated 2012 character context
+
+    🧪 [PRE-FIX] Writing files and running Pytest...
+       📄 Wrote: README.md
+       📄 Wrote: database.py
+       📄 Wrote: models.py
+       📄 Wrote: tests/test_services.py
+       📄 Wrote: tests/test_utils.py
+       📄 Wrote: services.py
+       📄 Wrote: utils.py
+       🔍 Running pytest in: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmp405dx6rh
+       🔍 PYTHONPATH set to: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmp405dx6rh
+
+       📋 Test Output:
+       ============================= test session starts ==============================
+       platform darwin -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0 -- /Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/bin/python3
+       cachedir: .pytest_cache
+       rootdir: /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmp405dx6rh
+       plugins: anyio-4.12.0
+       collecting ... collected 2 items
+       
+       tests/test_services.py::test_deposit_logic FAILED                        [ 50%]
+       tests/test_utils.py::test_validation PASSED                              [100%]
+       
+       =================================== FAILURES ===================================
+       ______________________________ test_deposit_logic ______________________________
+       tests/test_services.py:23: in test_deposit_logic
+           assert updated_acc.balance == Decimal("150.00"), f"Got {updated_acc.balance}"
+       E   AssertionError: Got 50.00
+       E   assert Decimal('50.00') == Decimal('150.00')
+       E    +  where Decimal('50.00') = <models.Account object at 0x103c708c0>.balance
+       E    +  and   Decimal('150.00') = Decimal('150.00')
+       =============================== warnings summary ===============================
+       tests/test_services.py::test_deposit_logic
+       ✅ Passed: 1/2
+       ❌ Failed: 1/2
+
+2️⃣  [Agent Lead] Executive Review...
+    📝 Logged prompt to: DEPOSIT_LOGIC_ERROR_1_lead_20251203_222130.json
+    📝 Decision: CHANGES_REQUESTED
+    ⚠️  Risk: CRITICAL
+
+🧠 [Agent Architect] Analyzing Logic WITH CONTEXT...
+    ℹ️  CTO Directives: Verify that the deposit logic uses addition (`account.balance += amount`) instead of assignment (`account.balance = amount`). Check for the implementation of pessimistic or optimistic locking mechanisms (e.g., `SELECT FOR UPDATE` or versioning) to prevent concurrent updates and race conditions. Ensure that currency amounts are handled using a precise data type (like `Decimal`) rather than standard floats or integers.
+    📚 Context Length: 2012 chars
+    📝 Diff Length: 471 chars
+    📝 Logged prompt to: DEPOSIT_LOGIC_ERROR_1_architect_20251203_222134.json
+    🔍 Found 3 issues.
+      ✅ Comment posted on services.py:10
+      ✅ Comment posted on services.py:7
+      ✅ Comment posted on utils.py:2
+
+3️⃣  [Apply Fixes] Implementing suggestions...
+    🤖 AI integrating 2 fixes into services.py...
+    🤖 AI integrating 1 fixes into utils.py...
+    📤 Committing 2 fixed files to GitLab...
+    ✅ Changes pushed to feature branch.
+    🔀 Merging MR 1 into Main...
+    ✅ MR Merged successfully.
+
+    🧪 [POST-MERGE] Writing files and running Pytest...
+       📄 Wrote: README.md
+       📄 Wrote: database.py
+       📄 Wrote: models.py
+       📄 Wrote: tests/test_services.py
+       📄 Wrote: tests/test_utils.py
+       📄 Wrote: services.py
+       📄 Wrote: utils.py
+       🔍 Running pytest in: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmp405dx6rh
+       🔍 PYTHONPATH set to: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmp405dx6rh
+
+       📋 Test Output:
+       ============================= test session starts ==============================
+       platform darwin -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0 -- /Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/bin/python3
+       cachedir: .pytest_cache
+       rootdir: /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmp405dx6rh
+       plugins: anyio-4.12.0
+       collecting ... collected 2 items
+       
+       tests/test_services.py::test_deposit_logic PASSED                        [ 50%]
+       tests/test_utils.py::test_validation PASSED                              [100%]
+       
+       =============================== warnings summary ===============================
+       tests/test_services.py::test_deposit_logic
+         /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmp405dx6rh/services.py:6: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+           account = session.query(Account).with_for_update().get(account_id)
+       
+       tests/test_services.py::test_deposit_logic
+         /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmp405dx6rh/tests/test_services.py:22: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+           updated_acc = db_session.query(Account).get(1)
+       
+       -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+       ✅ Passed: 2/2
+       ❌ Failed: 0/2
+
+    🧪 [POST-FIX] Writing files and running Pytest...
+       📄 Wrote: README.md
+       📄 Wrote: database.py
+       📄 Wrote: models.py
+       📄 Wrote: tests/test_services.py
+       📄 Wrote: tests/test_utils.py
+       📄 Wrote: services.py
+       📄 Wrote: utils.py
+       🔍 Running pytest in: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmp405dx6rh
+       🔍 PYTHONPATH set to: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmp405dx6rh
+
+       📋 Test Output:
+       ============================= test session starts ==============================
+       platform darwin -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0 -- /Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/bin/python3
+       cachedir: .pytest_cache
+       rootdir: /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmp405dx6rh
+       plugins: anyio-4.12.0
+       collecting ... collected 2 items
+       
+       tests/test_services.py::test_deposit_logic PASSED                        [ 50%]
+       tests/test_utils.py::test_validation PASSED                              [100%]
+       
+       =============================== warnings summary ===============================
+       tests/test_services.py::test_deposit_logic
+         /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmp405dx6rh/services.py:6: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+           account = session.query(Account).with_for_update().get(account_id)
+       
+       tests/test_services.py::test_deposit_logic
+         /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmp405dx6rh/tests/test_services.py:22: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+           updated_acc = db_session.query(Account).get(1)
+       
+       -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+       ✅ Passed: 2/2
+       ❌ Failed: 0/2
+
+4️⃣  [Results] Posting benchmark...
+    ✅ Results posted
+    🏆 SCENARIO PASSED (WITH CONTEXT)
+
+👋 Cleaned up local temp files.
+
+============================================================
+▶️  RUNNING CASE 2/11: MUTABLE_DEFAULT_ARG_TRAP
+    Source: scenarios11.py
+============================================================
+📁 Local Test Environment created at: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpnb1nsgxf
+🧹 Cleaning up old projects...
+   ✅ Deleted MUTABLE_DEFAULT_ARG_TRAP-1764782311
+
+1️⃣  [Setup] Creating GitLab Repo & MR...
+   ✅ Created: https://gitlab.com/vladimiralbrekhtccr-group/MUTABLE_DEFAULT_ARG_TRAP-1764782524
+   ✅ MR created: https://gitlab.com/vladimiralbrekhtccr-group/MUTABLE_DEFAULT_ARG_TRAP-1764782524/-/merge_requests/1
+
+📊 [Context Generation] Analyzing repository...
+📊 Analyzing repository: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmp0rfrdes6
+   📁 Found 4 relevant files
+   ✅ Selected 4 files for context
+   ✅ Analyzed 4 files
+🤖 Generating repository context with LLM...
+   Using: Google Gemini - gemini-flash-latest
+   ✅ Generated context (1876 characters)
+   ✅ Generated 1876 character context
+
+    🧪 [PRE-FIX] Writing files and running Pytest...
+       📄 Wrote: README.md
+       📄 Wrote: database.py
+       📄 Wrote: models.py
+       📄 Wrote: tests/test_batch.py
+       📄 Wrote: services.py
+       🔍 Running pytest in: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpnb1nsgxf
+       🔍 PYTHONPATH set to: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpnb1nsgxf
+
+       📋 Test Output:
+       ============================= test session starts ==============================
+       platform darwin -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0 -- /Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/bin/python3
+       cachedir: .pytest_cache
+       rootdir: /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpnb1nsgxf
+       plugins: anyio-4.12.0
+       collecting ... collected 1 item
+       
+       tests/test_batch.py::test_batch_isolation FAILED                         [100%]
+       
+       =================================== FAILURES ===================================
+       _____________________________ test_batch_isolation _____________________________
+       tests/test_batch.py:14: in test_batch_isolation
+           assert batch2 == ["tx_102"], f"Batch leakage detected! Got {batch2}"
+       E   AssertionError: Batch leakage detected! Got ['tx_101', 'tx_102']
+       E   assert ['tx_101', 'tx_102'] == ['tx_102']
+       E     
+       E     At index 0 diff: 'tx_101' != 'tx_102'
+       E     Left contains one more item: 'tx_102'
+       E     
+       E     Full diff:
+       ✅ Passed: 0/1
+       ❌ Failed: 1/1
+
+2️⃣  [Agent Lead] Executive Review...
+    📝 Logged prompt to: MUTABLE_DEFAULT_ARG_TRAP_lead_20251203_222224.json
+    📝 Decision: CHANGES_REQUESTED
+    ⚠️  Risk: CRITICAL
+
+🧠 [Agent Architect] Analyzing Logic WITH CONTEXT...
+    ℹ️  CTO Directives: Flag the use of mutable default arguments (specifically `batch_list=[]`). Verify that if a list or dictionary is required as a default, the standard Python idiom (e.g., `batch_list = [] if batch_list is None else batch_list`) is used to prevent state leakage. Assess the impact of this shared state on concurrent requests.
+    📚 Context Length: 1876 chars
+    📝 Diff Length: 183 chars
+    📝 Logged prompt to: MUTABLE_DEFAULT_ARG_TRAP_architect_20251203_222228.json
+    🔍 Found 3 issues.
+      ✅ Comment posted on services.py:2
+      ✅ Comment posted on services.py:4
+      ✅ Comment posted on services.py:5
+
+3️⃣  [Apply Fixes] Implementing suggestions...
+    🤖 AI integrating 3 fixes into services.py...
+    📤 Committing 1 fixed files to GitLab...
+    ✅ Changes pushed to feature branch.
+    🔀 Merging MR 1 into Main...
+    ✅ MR Merged successfully.
+
+    🧪 [POST-MERGE] Writing files and running Pytest...
+       📄 Wrote: README.md
+       📄 Wrote: database.py
+       📄 Wrote: models.py
+       📄 Wrote: tests/test_batch.py
+       📄 Wrote: services.py
+       🔍 Running pytest in: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpnb1nsgxf
+       🔍 PYTHONPATH set to: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpnb1nsgxf
+
+       📋 Test Output:
+       ============================= test session starts ==============================
+       platform darwin -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0 -- /Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/bin/python3
+       cachedir: .pytest_cache
+       rootdir: /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpnb1nsgxf
+       plugins: anyio-4.12.0
+       collecting ... collected 1 item
+       
+       tests/test_batch.py::test_batch_isolation PASSED                         [100%]
+       
+       ============================== 1 passed in 0.00s ===============================
+       
+       ✅ Passed: 1/1
+       ❌ Failed: 0/1
+
+    🧪 [POST-FIX] Writing files and running Pytest...
+       📄 Wrote: README.md
+       📄 Wrote: database.py
+       📄 Wrote: models.py
+       📄 Wrote: tests/test_batch.py
+       📄 Wrote: services.py
+       🔍 Running pytest in: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpnb1nsgxf
+       🔍 PYTHONPATH set to: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpnb1nsgxf
+
+       📋 Test Output:
+       ============================= test session starts ==============================
+       platform darwin -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0 -- /Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/bin/python3
+       cachedir: .pytest_cache
+       rootdir: /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpnb1nsgxf
+       plugins: anyio-4.12.0
+       collecting ... collected 1 item
+       
+       tests/test_batch.py::test_batch_isolation PASSED                         [100%]
+       
+       ============================== 1 passed in 0.00s ===============================
+       
+       ✅ Passed: 1/1
+       ❌ Failed: 0/1
+
+4️⃣  [Results] Posting benchmark...
+    ✅ Results posted
+    🏆 SCENARIO PASSED (WITH CONTEXT)
+
+👋 Cleaned up local temp files.
+
+============================================================
+▶️  RUNNING CASE 3/11: OBJECT_REFERENCE_TRAP
+    Source: scenarios12.py
+============================================================
+📁 Local Test Environment created at: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpkr690o4n
+🧹 Cleaning up old projects...
+   ✅ Deleted OBJECT_REFERENCE_TRAP-1764782366
+
+1️⃣  [Setup] Creating GitLab Repo & MR...
+   ✅ Created: https://gitlab.com/vladimiralbrekhtccr-group/OBJECT_REFERENCE_TRAP-1764782573
+   ✅ MR created: https://gitlab.com/vladimiralbrekhtccr-group/OBJECT_REFERENCE_TRAP-1764782573/-/merge_requests/1
+
+📊 [Context Generation] Analyzing repository...
+📊 Analyzing repository: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmph8k6ztuc
+   📁 Found 4 relevant files
+   ✅ Selected 4 files for context
+   ✅ Analyzed 4 files
+🤖 Generating repository context with LLM...
+   Using: Google Gemini - gemini-flash-latest
+   ✅ Generated context (1881 characters)
+   ✅ Generated 1881 character context
+
+    🧪 [PRE-FIX] Writing files and running Pytest...
+       📄 Wrote: README.md
+       📄 Wrote: database.py
+       📄 Wrote: models.py
+       📄 Wrote: tests/test_template.py
+       📄 Wrote: services.py
+       🔍 Running pytest in: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpkr690o4n
+       🔍 PYTHONPATH set to: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpkr690o4n
+
+       📋 Test Output:
+       ============================= test session starts ==============================
+       platform darwin -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0 -- /Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/bin/python3
+       cachedir: .pytest_cache
+       rootdir: /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpkr690o4n
+       plugins: anyio-4.12.0
+       collecting ... collected 1 item
+       
+       tests/test_template.py::test_template_integrity FAILED                   [100%]
+       
+       =================================== FAILURES ===================================
+       ___________________________ test_template_integrity ____________________________
+       tests/test_template.py:19: in test_template_integrity
+           assert STANDARD_TEMPLATE.name == "Standard", f"Template name corrupted to {STANDARD_TEMPLATE.name}"
+       E   AssertionError: Template name corrupted to Premium
+       E   assert 'Premium' == 'Standard'
+       E     
+       E     - Standard
+       E     + Premium
+       =========================== short test summary info ============================
+       FAILED tests/test_template.py::test_template_integrity - AssertionError: Temp...Traceback (most recent call last):
+  File "/Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/lib/python3.12/site-packages/gitlab/exceptions.py", line 346, in wrapped_f
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/lib/python3.12/site-packages/gitlab/mixins.py", line 258, in create
+    server_data = self.gitlab.http_post(path, post_data=data, files=files, **kwargs)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/lib/python3.12/site-packages/gitlab/client.py", line 985, in http_post
+    result = self.http_request(
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/lib/python3.12/site-packages/gitlab/client.py", line 770, in http_request
+    raise gitlab.exceptions.GitlabHttpError(
+gitlab.exceptions.GitlabHttpError: 400: A file with this name already exists
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/evaluation_pipeline_with_context/pipeline_with_context.py", line 699, in <module>
+    mr, file_map = pipeline.setup_repo_and_mr(scenario_key, scenario_data, base_files)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/evaluation_pipeline_with_context/pipeline_with_context.py", line 201, in setup_repo_and_mr
+    self.project.commits.create({
+  File "/Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/lib/python3.12/site-packages/gitlab/exceptions.py", line 348, in wrapped_f
+    raise error(e.error_message, e.response_code, e.response_body) from e
+gitlab.exceptions.GitlabCreateError: 400: A file with this name already exists
+
+       ✅ Passed: 0/1
+       ❌ Failed: 1/1
+
+2️⃣  [Agent Lead] Executive Review...
+    📝 Logged prompt to: OBJECT_REFERENCE_TRAP_lead_20251203_222313.json
+    📝 Decision: CHANGES_REQUESTED
+    ⚠️  Risk: CRITICAL
+
+🧠 [Agent Architect] Analyzing Logic WITH CONTEXT...
+    ℹ️  CTO Directives: Identify the use of mutable global state (`STANDARD_TEMPLATE`) being passed by reference. Verify that the template instantiation logic correctly performs a deep copy (e.g., using `copy.deepcopy` or equivalent serialization/deserialization) to ensure isolation between the template and the newly created instance. Check if the `AccountConfig` class should enforce immutability or use dataclasses for safer initialization.
+    📚 Context Length: 1881 chars
+    📝 Diff Length: 475 chars
+    📝 Logged prompt to: OBJECT_REFERENCE_TRAP_architect_20251203_222317.json
+    🔍 Found 3 issues.
+      ✅ Comment posted on services.py:12
+      ✅ Comment posted on services.py:15
+
+3️⃣  [Apply Fixes] Implementing suggestions...
+    🤖 AI integrating 3 fixes into services.py...
+    📤 Committing 1 fixed files to GitLab...
+    ✅ Changes pushed to feature branch.
+    🔀 Merging MR 1 into Main...
+    ✅ MR Merged successfully.
+
+    🧪 [POST-MERGE] Writing files and running Pytest...
+       📄 Wrote: README.md
+       📄 Wrote: database.py
+       📄 Wrote: models.py
+       📄 Wrote: tests/test_template.py
+       📄 Wrote: services.py
+       🔍 Running pytest in: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpkr690o4n
+       🔍 PYTHONPATH set to: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpkr690o4n
+
+       📋 Test Output:
+       ============================= test session starts ==============================
+       platform darwin -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0 -- /Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/bin/python3
+       cachedir: .pytest_cache
+       rootdir: /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpkr690o4n
+       plugins: anyio-4.12.0
+       collecting ... collected 1 item
+       
+       tests/test_template.py::test_template_integrity PASSED                   [100%]
+       
+       ============================== 1 passed in 0.00s ===============================
+       
+       ✅ Passed: 1/1
+       ❌ Failed: 0/1
+
+    🧪 [POST-FIX] Writing files and running Pytest...
+       📄 Wrote: README.md
+       📄 Wrote: database.py
+       📄 Wrote: models.py
+       📄 Wrote: tests/test_template.py
+       📄 Wrote: services.py
+       🔍 Running pytest in: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpkr690o4n
+       🔍 PYTHONPATH set to: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpkr690o4n
+
+       📋 Test Output:
+       ============================= test session starts ==============================
+       platform darwin -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0 -- /Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/bin/python3
+       cachedir: .pytest_cache
+       rootdir: /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpkr690o4n
+       plugins: anyio-4.12.0
+       collecting ... collected 1 item
+       
+       tests/test_template.py::test_template_integrity PASSED                   [100%]
+       
+       ============================== 1 passed in 0.00s ===============================
+       
+       ✅ Passed: 1/1
+       ❌ Failed: 0/1
+
+4️⃣  [Results] Posting benchmark...
+    ✅ Results posted
+    🏆 SCENARIO PASSED (WITH CONTEXT)
+
+👋 Cleaned up local temp files.
+
+============================================================
+▶️  RUNNING CASE 4/11: FOREX_PRECISION_CASCADE
+    Source: scenarios2.py
+============================================================
+📁 Local Test Environment created at: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpq4c6wh_s
+🧹 Cleaning up old projects...
+   ✅ Deleted FOREX_PRECISION_CASCADE-1764782413
+
+1️⃣  [Setup] Creating GitLab Repo & MR...
+   ✅ Created: https://gitlab.com/vladimiralbrekhtccr-group/FOREX_PRECISION_CASCADE-1764782624
+   ✅ MR created: https://gitlab.com/vladimiralbrekhtccr-group/FOREX_PRECISION_CASCADE-1764782624/-/merge_requests/1
+
+📊 [Context Generation] Analyzing repository...
+📊 Analyzing repository: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmppz318dhf
+   📁 Found 5 relevant files
+   ✅ Selected 5 files for context
+   ✅ Analyzed 5 files
+🤖 Generating repository context with LLM...
+   Using: Google Gemini - gemini-flash-latest
+   ✅ Generated context (2302 characters)
+   ✅ Generated 2302 character context
+
+    🧪 [PRE-FIX] Writing files and running Pytest...
+       📄 Wrote: README.md
+       📄 Wrote: database.py
+       📄 Wrote: models.py
+       📄 Wrote: tests/test_types.py
+       📄 Wrote: tests/test_math_drift.py
+       📄 Wrote: currency_utils.py
+       📄 Wrote: exchange_service.py
+       🔍 Running pytest in: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpq4c6wh_s
+       🔍 PYTHONPATH set to: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpq4c6wh_s
+
+       📋 Test Output:
+       ============================= test session starts ==============================
+       platform darwin -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0 -- /Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/bin/python3
+       cachedir: .pytest_cache
+       rootdir: /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpq4c6wh_s
+       plugins: anyio-4.12.0
+       collecting ... collected 2 items
+       
+       tests/test_math_drift.py::test_floating_point_artifacts FAILED           [ 50%]
+       tests/test_types.py::test_strict_decimal_integrity FAILED                [100%]
+       
+       =================================== FAILURES ===================================
+       ________________________ test_floating_point_artifacts _________________________
+       tests/test_math_drift.py:30: in test_floating_point_artifacts
+           final_balance = execute_exchange(99, "USD", "JPY", "10000.00")
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpq4c6wh_s/exchange_service.py:30: in execute_exchange
+           converted_raw = amount * rate
+                           ^^^^^^^^^^^^^
+       E   TypeError: unsupported operand type(s) for *: 'decimal.Decimal' and 'float'
+       ________________________ test_strict_decimal_integrity _________________________
+       ✅ Passed: 0/2
+       ❌ Failed: 2/2
+
+2️⃣  [Agent Lead] Executive Review...
+    📝 Logged prompt to: FOREX_PRECISION_CASCADE_lead_20251203_222405.json
+    📝 Decision: CHANGES_REQUESTED
+    ⚠️  Risk: CRITICAL
+
+🧠 [Agent Architect] Analyzing Logic WITH CONTEXT...
+    ℹ️  CTO Directives: Verify that all monetary values, rates, and fees are strictly represented and calculated using `decimal.Decimal`. Specifically, check `currency_utils.py` to ensure `get_live_rate` and `get_platform_fee` return `Decimal` objects, and confirm that the final update to `tgt_wallet.balance` uses a calculated value that has maintained `Decimal` precision throughout the process.
+    📚 Context Length: 2302 chars
+    📝 Diff Length: 2120 chars
+    📝 Logged prompt to: FOREX_PRECISION_CASCADE_architect_20251203_222409.json
+    🔍 Found 3 issues.
+      ✅ Comment posted on currency_utils.py:7
+      ✅ Comment posted on currency_utils.py:15
+      ✅ Comment posted on exchange_service.py:42
+
+3️⃣  [Apply Fixes] Implementing suggestions...
+    🤖 AI integrating 2 fixes into currency_utils.py...
+    🤖 AI integrating 1 fixes into exchange_service.py...
+    📤 Committing 2 fixed files to GitLab...
+    ✅ Changes pushed to feature branch.
+    🔀 Merging MR 1 into Main...
+    ✅ MR Merged successfully.
+
+    🧪 [POST-MERGE] Writing files and running Pytest...
+       📄 Wrote: README.md
+       📄 Wrote: database.py
+       📄 Wrote: models.py
+       📄 Wrote: tests/test_types.py
+       📄 Wrote: tests/test_math_drift.py
+       📄 Wrote: currency_utils.py
+       📄 Wrote: exchange_service.py
+       🔍 Running pytest in: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpq4c6wh_s
+       🔍 PYTHONPATH set to: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpq4c6wh_s
+
+       📋 Test Output:
+       ============================= test session starts ==============================
+       platform darwin -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0 -- /Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/bin/python3
+       cachedir: .pytest_cache
+       rootdir: /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpq4c6wh_s
+       plugins: anyio-4.12.0
+       collecting ... collected 2 items
+       
+       tests/test_math_drift.py::test_floating_point_artifacts FAILED           [ 50%]
+       tests/test_types.py::test_strict_decimal_integrity PASSED                [100%]
+       
+       =================================== FAILURES ===================================
+       ________________________ test_floating_point_artifacts _________________________
+       tests/test_math_drift.py:30: in test_floating_point_artifacts
+           final_balance = execute_exchange(99, "USD", "JPY", "10000.00")
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpq4c6wh_s/exchange_service.py:29: in execute_exchange
+           converted_raw = amount * rate
+                           ^^^^^^^^^^^^^
+       E   TypeError: unsupported operand type(s) for *: 'decimal.Decimal' and 'float'
+       =========================== short test summary info ============================
+       ✅ Passed: 1/2
+       ❌ Failed: 1/2
+
+    🧪 [POST-FIX] Writing files and running Pytest...
+       📄 Wrote: README.md
+       📄 Wrote: database.py
+       📄 Wrote: models.py
+       📄 Wrote: tests/test_types.py
+       📄 Wrote: tests/test_math_drift.py
+       📄 Wrote: currency_utils.py
+       📄 Wrote: exchange_service.py
+       🔍 Running pytest in: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpq4c6wh_s
+       🔍 PYTHONPATH set to: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpq4c6wh_s
+
+       📋 Test Output:
+       ============================= test session starts ==============================
+       platform darwin -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0 -- /Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/bin/python3
+       cachedir: .pytest_cache
+       rootdir: /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpq4c6wh_s
+       plugins: anyio-4.12.0
+       collecting ... collected 2 items
+       
+       tests/test_math_drift.py::test_floating_point_artifacts FAILED           [ 50%]
+       tests/test_types.py::test_strict_decimal_integrity PASSED                [100%]
+       
+       =================================== FAILURES ===================================
+       ________________________ test_floating_point_artifacts _________________________
+       tests/test_math_drift.py:30: in test_floating_point_artifacts
+           final_balance = execute_exchange(99, "USD", "JPY", "10000.00")
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpq4c6wh_s/exchange_service.py:29: in execute_exchange
+           converted_raw = amount * rate
+                           ^^^^^^^^^^^^^
+       E   TypeError: unsupported operand type(s) for *: 'decimal.Decimal' and 'float'
+       =========================== short test summary info ============================
+       ✅ Passed: 1/2
+       ❌ Failed: 1/2
+
+4️⃣  [Results] Posting benchmark...
+    ✅ Results posted
+    💀 SCENARIO FAILED (WITH CONTEXT)
+
+👋 Cleaned up local temp files.
+
+============================================================
+▶️  RUNNING CASE 5/11: DIRTY_SESSION_ROLLBACK
+    Source: scenarios3.py
+============================================================
+📁 Local Test Environment created at: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpe5vno8a5
+🧹 Cleaning up old projects...
+   ✅ Deleted DIRTY_SESSION_ROLLBACK-1764781883
+
+1️⃣  [Setup] Creating GitLab Repo & MR...
+   ✅ Created: https://gitlab.com/vladimiralbrekhtccr-group/DIRTY_SESSION_ROLLBACK-1764782676
+    ❌ CRASH: 400: A file with this name already exists
+
+👋 Cleaned up local temp files.
+
+============================================================
+▶️  RUNNING CASE 6/11: TRANSFER_FUNDS_LOGIC_ERROR
+    Source: scenarios4.py
+============================================================
+📁 Local Test Environment created at: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpcd8u1zio
+🧹 Cleaning up old projects...
+   ✅ Deleted TRANSFER_FUNDS_LOGIC_ERROR-1764781903
+
+1️⃣  [Setup] Creating GitLab Repo & MR...
+   ✅ Created: https://gitlab.com/vladimiralbrekhtccr-group/TRANSFER_FUNDS_LOGIC_ERROR-1764782696
+   ✅ MR created: https://gitlab.com/vladimiralbrekhtccr-group/TRANSFER_FUNDS_LOGIC_ERROR-1764782696/-/merge_requests/1
+
+📊 [Context Generation] Analyzing repository...
+📊 Analyzing repository: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmp3rhe9b52
+   📁 Found 4 relevant files
+   ✅ Selected 4 files for context
+   ✅ Analyzed 4 files
+🤖 Generating repository context with LLM...
+   Using: Google Gemini - gemini-flash-latest
+   ✅ Generated context (1761 characters)
+   ✅ Generated 1761 character context
+
+    🧪 [PRE-FIX] Writing files and running Pytest...
+       📄 Wrote: README.md
+       📄 Wrote: database.py
+       📄 Wrote: models.py
+       📄 Wrote: tests/test_transfer.py
+       📄 Wrote: services.py
+       🔍 Running pytest in: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpcd8u1zio
+       🔍 PYTHONPATH set to: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpcd8u1zio
+
+       📋 Test Output:
+       ============================= test session starts ==============================
+       platform darwin -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0 -- /Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/bin/python3
+       cachedir: .pytest_cache
+       rootdir: /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpcd8u1zio
+       plugins: anyio-4.12.0
+       collecting ... collected 1 item
+       
+       tests/test_transfer.py::test_transfer_logic FAILED                       [100%]
+       
+       =================================== FAILURES ===================================
+       _____________________________ test_transfer_logic ______________________________
+       tests/test_transfer.py:31: in test_transfer_logic
+           assert receiver.balance == Decimal("80.00"), f"Receiver Balance: {receiver.balance}"
+       E   AssertionError: Receiver Balance: 20.00
+       E   assert Decimal('20.00') == Decimal('80.00')
+       E    +  where Decimal('20.00') = <models.Account object at 0x1070f21b0>.balance
+       E    +  and   Decimal('80.00') = Decimal('80.00')
+       =============================== warnings summary ===============================
+       tests/test_transfer.py::test_transfer_logic
+         /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpcd8u1zio/services.py:7: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+       ✅ Passed: 0/1
+       ❌ Failed: 1/1
+
+2️⃣  [Agent Lead] Executive Review...
+    📝 Logged prompt to: TRANSFER_FUNDS_LOGIC_ERROR_lead_20251203_222518.json
+    📝 Decision: CHANGES_REQUESTED
+    ⚠️  Risk: CRITICAL
+
+🧠 [Agent Architect] Analyzing Logic WITH CONTEXT...
+    ℹ️  CTO Directives: 1. Verify the transaction logic: specifically, check if the amount is correctly added to the receiver's balance (currently subtracted). 2. Check for concurrency control mechanisms (e.g., SELECT FOR UPDATE, pessimistic locking, or optimistic locking version checks) to prevent race conditions during the read-modify-write cycle. 3. Ensure the entire operation (read, modify, commit) is atomic and isolated within a single database transaction.
+    📚 Context Length: 1761 chars
+    📝 Diff Length: 500 chars
+    📝 Logged prompt to: TRANSFER_FUNDS_LOGIC_ERROR_architect_20251203_222521.json
+    🔍 Found 3 issues.
+      ✅ Comment posted on services.py:14
+      ✅ Comment posted on services.py:7
+      ✅ Comment posted on services.py:8
+
+3️⃣  [Apply Fixes] Implementing suggestions...
+    🤖 AI integrating 3 fixes into services.py...
+    📤 Committing 1 fixed files to GitLab...
+    ✅ Changes pushed to feature branch.
+    🔀 Merging MR 1 into Main...
+    ✅ MR Merged successfully.
+
+    🧪 [POST-MERGE] Writing files and running Pytest...
+       📄 Wrote: README.md
+       📄 Wrote: database.py
+       📄 Wrote: models.py
+       📄 Wrote: tests/test_transfer.py
+       📄 Wrote: services.py
+       🔍 Running pytest in: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpcd8u1zio
+       🔍 PYTHONPATH set to: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpcd8u1zio
+
+       📋 Test Output:
+       ============================= test session starts ==============================
+       platform darwin -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0 -- /Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/bin/python3
+       cachedir: .pytest_cache
+       rootdir: /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpcd8u1zio
+       plugins: anyio-4.12.0
+       collecting ... collected 1 item
+       
+       tests/test_transfer.py::test_transfer_logic PASSED                       [100%]
+       
+       =============================== warnings summary ===============================
+       tests/test_transfer.py::test_transfer_logic
+         /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpcd8u1zio/services.py:6: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+           sender = session.query(Account).with_for_update().get(from_id)
+       
+       tests/test_transfer.py::test_transfer_logic
+         /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpcd8u1zio/services.py:7: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+           receiver = session.query(Account).with_for_update().get(to_id)
+       
+       tests/test_transfer.py::test_transfer_logic
+         /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpcd8u1zio/tests/test_transfer.py:27: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+       ✅ Passed: 1/1
+       ❌ Failed: 0/1
+
+    🧪 [POST-FIX] Writing files and running Pytest...
+       📄 Wrote: README.md
+       📄 Wrote: database.py
+       📄 Wrote: models.py
+       📄 Wrote: tests/test_transfer.py
+       📄 Wrote: services.py
+       🔍 Running pytest in: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpcd8u1zio
+       🔍 PYTHONPATH set to: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpcd8u1zio
+
+       📋 Test Output:
+       ============================= test session starts ==============================
+       platform darwin -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0 -- /Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/bin/python3
+       cachedir: .pytest_cache
+       rootdir: /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpcd8u1zio
+       plugins: anyio-4.12.0
+       collecting ... collected 1 item
+       
+       tests/test_transfer.py::test_transfer_logic PASSED                       [100%]
+       
+       =============================== warnings summary ===============================
+       tests/test_transfer.py::test_transfer_logic
+         /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpcd8u1zio/services.py:6: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+           sender = session.query(Account).with_for_update().get(from_id)
+       
+       tests/test_transfer.py::test_transfer_logic
+         /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpcd8u1zio/services.py:7: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+           receiver = session.query(Account).with_for_update().get(to_id)
+       
+       tests/test_transfer.py::test_transfer_logic
+         /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpcd8u1zio/tests/test_transfer.py:27: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+       ✅ Passed: 1/1
+       ❌ Failed: 0/1
+
+4️⃣  [Results] Posting benchmark...
+    ✅ Results posted
+    🏆 SCENARIO PASSED (WITH CONTEXT)
+
+👋 Cleaned up local temp files.
+
+============================================================
+▶️  RUNNING CASE 7/11: INTEREST_CALCULATION_ERROR
+    Source: scenarios5.py
+============================================================
+📁 Local Test Environment created at: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpln8yl_hk
+🧹 Cleaning up old projects...
+   ✅ Deleted INTEREST_CALCULATION_ERROR-1764781949
+
+1️⃣  [Setup] Creating GitLab Repo & MR...
+   ✅ Created: https://gitlab.com/vladimiralbrekhtccr-group/INTEREST_CALCULATION_ERROR-1764782744
+   ✅ MR created: https://gitlab.com/vladimiralbrekhtccr-group/INTEREST_CALCULATION_ERROR-1764782744/-/merge_requests/1
+
+📊 [Context Generation] Analyzing repository...
+📊 Analyzing repository: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmp890orw6v
+   📁 Found 4 relevant files
+   ✅ Selected 4 files for context
+   ✅ Analyzed 4 files
+🤖 Generating repository context with LLM...
+   Using: Google Gemini - gemini-flash-latest
+   ✅ Generated context (1737 characters)
+   ✅ Generated 1737 character context
+
+    🧪 [PRE-FIX] Writing files and running Pytest...
+       📄 Wrote: README.md
+       📄 Wrote: database.py
+       📄 Wrote: models.py
+       📄 Wrote: tests/test_interest.py
+       📄 Wrote: services.py
+       🔍 Running pytest in: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpln8yl_hk
+       🔍 PYTHONPATH set to: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpln8yl_hk
+
+       📋 Test Output:
+       ============================= test session starts ==============================
+       platform darwin -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0 -- /Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/bin/python3
+       cachedir: .pytest_cache
+       rootdir: /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpln8yl_hk
+       plugins: anyio-4.12.0
+       collecting ... collected 2 items
+       
+       tests/test_interest.py::test_interest_logic PASSED                       [ 50%]
+       tests/test_interest.py::test_interest_logic_fixed FAILED                 [100%]
+       
+       =================================== FAILURES ===================================
+       __________________________ test_interest_logic_fixed ___________________________
+       tests/test_interest.py:43: in test_interest_logic_fixed
+           assert updated_acc.balance == Decimal("1050.00"), f"Got {updated_acc.balance}"
+       E   AssertionError: Got 6000.00
+       E   assert Decimal('6000.00') == Decimal('1050.00')
+       E    +  where Decimal('6000.00') = <models.Account object at 0x1035c0350>.balance
+       E    +  and   Decimal('1050.00') = Decimal('1050.00')
+       =============================== warnings summary ===============================
+       tests/test_interest.py::test_interest_logic
+       ✅ Passed: 1/2
+       ❌ Failed: 1/2
+
+2️⃣  [Agent Lead] Executive Review...
+    📝 Logged prompt to: INTEREST_CALCULATION_ERROR_lead_20251203_222602.json
+    📝 Decision: CHANGES_REQUESTED
+    ⚠️  Risk: CRITICAL
+
+🧠 [Agent Architect] Analyzing Logic WITH CONTEXT...
+    ℹ️  CTO Directives: Immediately check for the absence of database locking mechanisms (e.g., `SELECT FOR UPDATE`) or optimistic locking (version columns) when fetching and updating the `Account` balance. Verify that the database session is properly managed and closed, even in the event of an exception. Ensure that the interest calculation is performed using the correct precision and rounding rules mandated by regulatory compliance.
+    📚 Context Length: 1737 chars
+    📝 Diff Length: 445 chars
+    📝 Logged prompt to: INTEREST_CALCULATION_ERROR_architect_20251203_222606.json
+    🔍 Found 3 issues.
+      ✅ Comment posted on services.py:8
+      ✅ Comment posted on services.py:12
+      ✅ Comment posted on services.py:6
+
+3️⃣  [Apply Fixes] Implementing suggestions...
+    🤖 AI integrating 3 fixes into services.py...
+    📤 Committing 1 fixed files to GitLab...
+    ✅ Changes pushed to feature branch.
+    🔀 Merging MR 1 into Main...
+    ❌ Merge failed: 422: Branch cannot be merged
+
+    🧪 [POST-MERGE] Writing files and running Pytest...
+       📄 Wrote: README.md
+       📄 Wrote: database.py
+       📄 Wrote: models.py
+       📄 Wrote: tests/test_interest.py
+       📄 Wrote: services.py
+       🔍 Running pytest in: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpln8yl_hk
+       🔍 PYTHONPATH set to: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpln8yl_hk
+
+       📋 Test Output:
+       ============================= test session starts ==============================
+       platform darwin -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0 -- /Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/bin/python3
+       cachedir: .pytest_cache
+       rootdir: /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpln8yl_hk
+       plugins: anyio-4.12.0
+       collecting ... collected 2 items
+       
+       tests/test_interest.py::test_interest_logic PASSED                       [ 50%]
+       tests/test_interest.py::test_interest_logic_fixed FAILED                 [100%]
+       
+       =================================== FAILURES ===================================
+       __________________________ test_interest_logic_fixed ___________________________
+       tests/test_interest.py:43: in test_interest_logic_fixed
+           assert updated_acc.balance == Decimal("1050.00"), f"Got {updated_acc.balance}"
+       E   AssertionError: Got 6000.00
+       E   assert Decimal('6000.00') == Decimal('1050.00')
+       E    +  where Decimal('6000.00') = <models.Account object at 0x1055ae7b0>.balance
+       E    +  and   Decimal('1050.00') = Decimal('1050.00')
+       =============================== warnings summary ===============================
+       tests/test_interest.py::test_interest_logic
+       ✅ Passed: 1/2
+       ❌ Failed: 1/2
+
+    🧪 [POST-FIX] Writing files and running Pytest...
+       📄 Wrote: README.md
+       📄 Wrote: database.py
+       📄 Wrote: models.py
+       📄 Wrote: tests/test_interest.py
+       📄 Wrote: services.py
+       🔍 Running pytest in: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpln8yl_hk
+       🔍 PYTHONPATH set to: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpln8yl_hk
+
+       📋 Test Output:
+       ============================= test session starts ==============================
+       platform darwin -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0 -- /Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/bin/python3
+       cachedir: .pytest_cache
+       rootdir: /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpln8yl_hk
+       plugins: anyio-4.12.0
+       collecting ... collected 2 items
+       
+       tests/test_interest.py::test_interest_logic PASSED                       [ 50%]
+       tests/test_interest.py::test_interest_logic_fixed FAILED                 [100%]
+       
+       =================================== FAILURES ===================================
+       __________________________ test_interest_logic_fixed ___________________________
+       tests/test_interest.py:43: in test_interest_logic_fixed
+           assert updated_acc.balance == Decimal("1050.00"), f"Got {updated_acc.balance}"
+       E   AssertionError: Got 6000.00
+       E   assert Decimal('6000.00') == Decimal('1050.00')
+       E    +  where Decimal('6000.00') = <models.Account object at 0x107bb6660>.balance
+       E    +  and   Decimal('1050.00') = Decimal('1050.00')
+       =============================== warnings summary ===============================
+       tests/test_interest.py::test_interest_logic
+       ✅ Passed: 1/2
+       ❌ Failed: 1/2
+
+4️⃣  [Results] Posting benchmark...
+    ✅ Results posted
+    💀 SCENARIO FAILED (WITH CONTEXT)
+
+👋 Cleaned up local temp files.
+
+============================================================
+▶️  RUNNING CASE 8/11: CURRENCY_CONVERSION_ERROR
+    Source: scenarios6.py
+============================================================
+📁 Local Test Environment created at: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpfrg0fh9w
+🧹 Cleaning up old projects...
+   ✅ Deleted CURRENCY_CONVERSION_ERROR-1764782001
+
+1️⃣  [Setup] Creating GitLab Repo & MR...
+   ✅ Created: https://gitlab.com/vladimiralbrekhtccr-group/CURRENCY_CONVERSION_ERROR-1764782789
+   ✅ MR created: https://gitlab.com/vladimiralbrekhtccr-group/CURRENCY_CONVERSION_ERROR-1764782789/-/merge_requests/1
+
+📊 [Context Generation] Analyzing repository...
+📊 Analyzing repository: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpjnqpe0a2
+   📁 Found 4 relevant files
+   ✅ Selected 4 files for context
+   ✅ Analyzed 4 files
+🤖 Generating repository context with LLM...
+   Using: Google Gemini - gemini-flash-latest
+   ✅ Generated context (1625 characters)
+   ✅ Generated 1625 character context
+
+    🧪 [PRE-FIX] Writing files and running Pytest...
+       📄 Wrote: README.md
+       📄 Wrote: database.py
+       📄 Wrote: models.py
+       📄 Wrote: tests/test_currency.py
+       📄 Wrote: services.py
+       🔍 Running pytest in: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpfrg0fh9w
+       🔍 PYTHONPATH set to: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpfrg0fh9w
+
+       📋 Test Output:
+       ============================= test session starts ==============================
+       platform darwin -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0 -- /Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/bin/python3
+       cachedir: .pytest_cache
+       rootdir: /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpfrg0fh9w
+       plugins: anyio-4.12.0
+       collecting ... collected 2 items
+       
+       tests/test_currency.py::test_usd_to_eur FAILED                           [ 50%]
+       tests/test_currency.py::test_eur_to_usd PASSED                           [100%]
+       
+       =================================== FAILURES ===================================
+       _______________________________ test_usd_to_eur ________________________________
+       tests/test_currency.py:14: in test_usd_to_eur
+           assert abs(result - expected) < Decimal("0.01"), f"Expected {expected}, got {result}"
+       E   AssertionError: Expected 85.00, got 117.6470588235294117647058824
+       E   assert Decimal('32.6470588235294117647058824') < Decimal('0.01')
+       E    +  where Decimal('32.6470588235294117647058824') = abs((Decimal('117.6470588235294117647058824') - Decimal('85.00')))
+       E    +  and   Decimal('0.01') = Decimal('0.01')
+       =========================== short test summary info ============================
+       FAILED tests/test_currency.py::test_usd_to_eur - AssertionError: Expected 85....
+       ✅ Passed: 1/2
+       ❌ Failed: 1/2
+
+2️⃣  [Agent Lead] Executive Review...
+    📝 Logged prompt to: CURRENCY_CONVERSION_ERROR_lead_20251203_222652.json
+    📝 Decision: CHANGES_REQUESTED
+    ⚠️  Risk: HIGH
+
+🧠 [Agent Architect] Analyzing Logic WITH CONTEXT...
+    ℹ️  CTO Directives: Verify the mathematical correctness of the currency conversion logic, specifically checking the base currency normalization (e.g., converting all inputs to USD first, then to the target currency). Flag the use of hardcoded `RATES` dictionary as a critical architectural violation; confirm that a proper external Rate Provider (e.g., Redis cache, dedicated microservice, or third-party API) is planned or required before merging.
+    📚 Context Length: 1625 chars
+    📝 Diff Length: 588 chars
+    📝 Logged prompt to: CURRENCY_CONVERSION_ERROR_architect_20251203_222656.json
+    🔍 Found 3 issues.
+      ✅ Comment posted on services.py:16
+      ✅ Comment posted on services.py:17
+      ✅ Comment posted on services.py:20
+
+3️⃣  [Apply Fixes] Implementing suggestions...
+    🤖 AI integrating 3 fixes into services.py...
+    📤 Committing 1 fixed files to GitLab...
+    ✅ Changes pushed to feature branch.
+    🔀 Merging MR 1 into Main...
+    ❌ Merge failed: 422: Branch cannot be merged
+
+    🧪 [POST-MERGE] Writing files and running Pytest...
+       📄 Wrote: README.md
+       📄 Wrote: database.py
+       📄 Wrote: models.py
+       📄 Wrote: tests/test_currency.py
+       📄 Wrote: services.py
+       🔍 Running pytest in: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpfrg0fh9w
+       🔍 PYTHONPATH set to: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpfrg0fh9w
+
+       📋 Test Output:
+       ============================= test session starts ==============================
+       platform darwin -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0 -- /Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/bin/python3
+       cachedir: .pytest_cache
+       rootdir: /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpfrg0fh9w
+       plugins: anyio-4.12.0
+       collecting ... collected 2 items
+       
+       tests/test_currency.py::test_usd_to_eur PASSED                           [ 50%]
+       tests/test_currency.py::test_eur_to_usd PASSED                           [100%]
+       
+       ============================== 2 passed in 0.00s ===============================
+       
+       ✅ Passed: 2/2
+       ❌ Failed: 0/2
+
+    🧪 [POST-FIX] Writing files and running Pytest...
+       📄 Wrote: README.md
+       📄 Wrote: database.py
+       📄 Wrote: models.py
+       📄 Wrote: tests/test_currency.py
+       📄 Wrote: services.py
+       🔍 Running pytest in: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpfrg0fh9w
+       🔍 PYTHONPATH set to: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpfrg0fh9w
+
+       📋 Test Output:
+       ============================= test session starts ==============================
+       platform darwin -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0 -- /Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/bin/python3
+       cachedir: .pytest_cache
+       rootdir: /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpfrg0fh9w
+       plugins: anyio-4.12.0
+       collecting ... collected 2 items
+       
+       tests/test_currency.py::test_usd_to_eur PASSED                           [ 50%]
+       tests/test_currency.py::test_eur_to_usd PASSED                           [100%]
+       
+       ============================== 2 passed in 0.00s ===============================
+       
+       ✅ Passed: 2/2
+       ❌ Failed: 0/2
+
+4️⃣  [Results] Posting benchmark...
+    ✅ Results posted
+    🏆 SCENARIO PASSED (WITH CONTEXT)
+
+👋 Cleaned up local temp files.
+
+============================================================
+▶️  RUNNING CASE 9/11: WITHDRAWAL_LOGIC_ERROR_8
+    Source: scenarios7.py
+============================================================
+📁 Local Test Environment created at: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpvcthm5y0
+🧹 Cleaning up old projects...
+   ✅ Deleted WITHDRAWAL_LOGIC_ERROR_8-1764782056
+
+1️⃣  [Setup] Creating GitLab Repo & MR...
+   ✅ Created: https://gitlab.com/vladimiralbrekhtccr-group/WITHDRAWAL_LOGIC_ERROR_8-1764782840
+   ✅ MR created: https://gitlab.com/vladimiralbrekhtccr-group/WITHDRAWAL_LOGIC_ERROR_8-1764782840/-/merge_requests/1
+
+📊 [Context Generation] Analyzing repository...
+📊 Analyzing repository: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmphmu1r13q
+   📁 Found 5 relevant files
+   ✅ Selected 5 files for context
+   ✅ Analyzed 5 files
+🤖 Generating repository context with LLM...
+   Using: Google Gemini - gemini-flash-latest
+   ✅ Generated context (1937 characters)
+   ✅ Generated 1937 character context
+
+    🧪 [PRE-FIX] Writing files and running Pytest...
+       📄 Wrote: README.md
+       📄 Wrote: database.py
+       📄 Wrote: models.py
+       📄 Wrote: tests/test_services.py
+       📄 Wrote: tests/test_fees.py
+       📄 Wrote: services.py
+       📄 Wrote: fees.py
+       🔍 Running pytest in: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpvcthm5y0
+       🔍 PYTHONPATH set to: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpvcthm5y0
+
+       📋 Test Output:
+       ============================= test session starts ==============================
+       platform darwin -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0 -- /Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/bin/python3
+       cachedir: .pytest_cache
+       rootdir: /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpvcthm5y0
+       plugins: anyio-4.12.0
+       collecting ... collected 4 items
+       
+       tests/test_fees.py::test_standard_account_fee PASSED                     [ 25%]
+       tests/test_fees.py::test_premium_account_no_fee FAILED                   [ 50%]
+       tests/test_services.py::test_withdrawal_insufficient_funds FAILED        [ 75%]
+       tests/test_services.py::test_withdrawal_success PASSED                   [100%]
+       
+       =================================== FAILURES ===================================
+       _________________________ test_premium_account_no_fee __________________________
+       tests/test_fees.py:12: in test_premium_account_no_fee
+           assert fee == Decimal("0.00"), f"Premium accounts should have 0% fee, got {fee}"
+       E   AssertionError: Premium accounts should have 0% fee, got 1.0000
+       E   assert Decimal('1.0000') == Decimal('0.00')
+       E    +  where Decimal('0.00') = Decimal('0.00')
+       ______________________ test_withdrawal_insufficient_funds ______________________
+       ✅ Passed: 2/4
+       ❌ Failed: 2/4
+
+2️⃣  [Agent Lead] Executive Review...
+    📝 Logged prompt to: WITHDRAWAL_LOGIC_ERROR_8_lead_20251203_222742.json
+    📝 Decision: CHANGES_REQUESTED
+    ⚠️  Risk: CRITICAL
+
+🧠 [Agent Architect] Analyzing Logic WITH CONTEXT...
+    ℹ️  CTO Directives: Verify the database interaction in `withdraw_funds`. Specifically, check if the session uses any form of locking (e.g., `SELECT FOR UPDATE` or optimistic locking via version columns) when fetching the `Account` object before modifying the balance. The current implementation is vulnerable to lost updates and negative balances under concurrency.
+    📚 Context Length: 1937 chars
+    📝 Diff Length: 759 chars
+    📝 Logged prompt to: WITHDRAWAL_LOGIC_ERROR_8_architect_20251203_222747.json
+    🔍 Found 3 issues.
+      ✅ Comment posted on fees.py:6
+      ✅ Comment posted on services.py:8
+      ✅ Comment posted on services.py:16
+
+3️⃣  [Apply Fixes] Implementing suggestions...
+    🤖 AI integrating 1 fixes into fees.py...
+    🤖 AI integrating 2 fixes into services.py...
+    📤 Committing 2 fixed files to GitLab...
+    ✅ Changes pushed to feature branch.
+    🔀 Merging MR 1 into Main...
+    ✅ MR Merged successfully.
+
+    🧪 [POST-MERGE] Writing files and running Pytest...
+       📄 Wrote: README.md
+       📄 Wrote: database.py
+       📄 Wrote: models.py
+       📄 Wrote: tests/test_services.py
+       📄 Wrote: tests/test_fees.py
+       📄 Wrote: services.py
+       📄 Wrote: fees.py
+       🔍 Running pytest in: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpvcthm5y0
+       🔍 PYTHONPATH set to: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpvcthm5y0
+
+       📋 Test Output:
+       ============================= test session starts ==============================
+       platform darwin -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0 -- /Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/bin/python3
+       cachedir: .pytest_cache
+       rootdir: /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpvcthm5y0
+       plugins: anyio-4.12.0
+       collecting ... collected 4 items
+       
+       tests/test_fees.py::test_standard_account_fee PASSED                     [ 25%]
+       tests/test_fees.py::test_premium_account_no_fee FAILED                   [ 50%]
+       tests/test_services.py::test_withdrawal_insufficient_funds PASSED        [ 75%]
+       tests/test_services.py::test_withdrawal_success PASSED                   [100%]
+       
+       =================================== FAILURES ===================================
+       _________________________ test_premium_account_no_fee __________________________
+       tests/test_fees.py:12: in test_premium_account_no_fee
+           assert fee == Decimal("0.00"), f"Premium accounts should have 0% fee, got {fee}"
+       E   AssertionError: Premium accounts should have 0% fee, got 1.0000
+       E   assert Decimal('1.0000') == Decimal('0.00')
+       E    +  where Decimal('0.00') = Decimal('0.00')
+       =============================== warnings summary ===============================
+       ✅ Passed: 3/4
+       ❌ Failed: 1/4
+
+    🧪 [POST-FIX] Writing files and running Pytest...
+       📄 Wrote: README.md
+       📄 Wrote: database.py
+       📄 Wrote: models.py
+       📄 Wrote: tests/test_services.py
+       📄 Wrote: tests/test_fees.py
+       📄 Wrote: services.py
+       📄 Wrote: fees.py
+       🔍 Running pytest in: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpvcthm5y0
+       🔍 PYTHONPATH set to: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpvcthm5y0
+
+       📋 Test Output:
+       ============================= test session starts ==============================
+       platform darwin -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0 -- /Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/bin/python3
+       cachedir: .pytest_cache
+       rootdir: /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpvcthm5y0
+       plugins: anyio-4.12.0
+       collecting ... collected 4 items
+       
+       tests/test_fees.py::test_standard_account_fee PASSED                     [ 25%]
+       tests/test_fees.py::test_premium_account_no_fee FAILED                   [ 50%]
+       tests/test_services.py::test_withdrawal_insufficient_funds PASSED        [ 75%]
+       tests/test_services.py::test_withdrawal_success PASSED                   [100%]
+       
+       =================================== FAILURES ===================================
+       _________________________ test_premium_account_no_fee __________________________
+       tests/test_fees.py:12: in test_premium_account_no_fee
+           assert fee == Decimal("0.00"), f"Premium accounts should have 0% fee, got {fee}"
+       E   AssertionError: Premium accounts should have 0% fee, got 1.0000
+       E   assert Decimal('1.0000') == Decimal('0.00')
+       E    +  where Decimal('0.00') = Decimal('0.00')
+       =============================== warnings summary ===============================
+       ✅ Passed: 3/4
+       ❌ Failed: 1/4
+
+4️⃣  [Results] Posting benchmark...
+    ✅ Results posted
+    💀 SCENARIO FAILED (WITH CONTEXT)
+
+👋 Cleaned up local temp files.
+
+============================================================
+▶️  RUNNING CASE 10/11: WITHDRAWAL_SERVICE_COMPREHENSIVE_9
+    Source: scenarios8.py
+============================================================
+📁 Local Test Environment created at: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpahmf_k5e
+🧹 Cleaning up old projects...
+   ✅ Deleted WITHDRAWAL_SERVICE_COMPREHENSIVE_9-1764782113
+
+1️⃣  [Setup] Creating GitLab Repo & MR...
+   ✅ Created: https://gitlab.com/vladimiralbrekhtccr-group/WITHDRAWAL_SERVICE_COMPREHENSIVE_9-1764782892
+   ✅ MR created: https://gitlab.com/vladimiralbrekhtccr-group/WITHDRAWAL_SERVICE_COMPREHENSIVE_9-1764782892/-/merge_requests/1
+
+📊 [Context Generation] Analyzing repository...
+📊 Analyzing repository: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmphqbq3uqy
+   📁 Found 10 relevant files
+   ✅ Selected 10 files for context
+   ✅ Analyzed 10 files
+🤖 Generating repository context with LLM...
+   Using: Google Gemini - gemini-flash-latest
+   ✅ Generated context (2092 characters)
+   ✅ Generated 2092 character context
+
+    🧪 [PRE-FIX] Writing files and running Pytest...
+       📄 Wrote: README.md
+       📄 Wrote: database.py
+       📄 Wrote: models.py
+       📄 Wrote: exceptions.py
+       📄 Wrote: tests/__init__.py
+       📄 Wrote: tests/conftest.py
+       📄 Wrote: tests/test_withdrawal_service.py
+       📄 Wrote: tests/test_fee_calculator.py
+       📄 Wrote: tests/test_limit_checker.py
+       📄 Wrote: tests/test_transaction_logger.py
+       📄 Wrote: services/withdrawal_service.py
+       📄 Wrote: services/fee_calculator.py
+       📄 Wrote: services/limit_checker.py
+       📄 Wrote: services/transaction_logger.py
+       📄 Wrote: services/__init__.py
+       🔍 Running pytest in: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpahmf_k5e
+       🔍 PYTHONPATH set to: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpahmf_k5e
+
+       📋 Test Output:
+       ============================= test session starts ==============================
+       platform darwin -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0 -- /Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/bin/python3
+       cachedir: .pytest_cache
+       rootdir: /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpahmf_k5e
+       plugins: anyio-4.12.0
+       collecting ... collected 61 items
+       
+       tests/test_fee_calculator.py::TestFeeCalculatorBasic::test_standard_account_fee_rate FAILED [  1%]
+       tests/test_fee_calculator.py::TestFeeCalculatorBasic::test_premium_account_fee_rate FAILED [  3%]
+       tests/test_fee_calculator.py::TestFeeCalculatorBasic::test_business_account_fee_rate FAILED [  4%]
+       tests/test_fee_calculator.py::TestFeeCalculatorMinimums::test_standard_minimum_fee PASSED [  6%]
+       tests/test_fee_calculator.py::TestFeeCalculatorMinimums::test_premium_no_minimum_fee PASSED [  8%]
+       tests/test_fee_calculator.py::TestFeeCalculatorMinimums::test_business_minimum_fee PASSED [  9%]
+       tests/test_fee_calculator.py::TestFeeCalculatorMaximums::test_standard_maximum_fee FAILED [ 11%]
+       tests/test_fee_calculator.py::TestFeeCalculatorMaximums::test_premium_maximum_fee FAILED [ 13%]
+       tests/test_fee_calculator.py::TestFeeCalculatorMaximums::test_business_maximum_fee FAILED [ 14%]
+       tests/test_fee_calculator.py::TestFeeCalculatorThreshold::test_below_free_threshold PASSED [ 16%]
+       tests/test_fee_calculator.py::TestFeeCalculatorThreshold::test_at_free_threshold FAILED [ 18%]
+       tests/test_fee_calculator.py::TestFeeCalculatorThreshold::test_above_free_threshold PASSED [ 19%]
+       tests/test_fee_calculator.py::TestFeeCalculatorUnknownAccountType::test_unknown_account_type_raises_error FAILED [ 21%]
+       ✅ Passed: 37/61
+       ❌ Failed: 24/61
+
+2️⃣  [Agent Lead] Executive Review...
+    📝 Logged prompt to: WITHDRAWAL_SERVICE_COMPREHENSIVE_9_lead_20251203_222835.json
+    📝 Decision: CHANGES_REQUESTED
+    ⚠️  Risk: CRITICAL
+
+🧠 [Agent Architect] Analyzing Logic WITH CONTEXT...
+    ℹ️  CTO Directives: The primary focus must be on concurrency and atomicity. Specifically, check the `WithdrawalService.withdraw` method. Verify that the balance check, balance update (`account.balance = account.balance - total_deduction`), daily limit check, and daily limit record (`self.limit_checker.record_withdrawal`) are executed atomically under a database lock (e.g., SELECT FOR UPDATE on the Account and DailyWithdrawalTracker records). Also, review `DailyLimitChecker.record_withdrawal` for potential race conditions if multiple processes try to create the initial `DailyWithdrawalTracker` record simultaneously.
+    📚 Context Length: 2092 chars
+    📝 Diff Length: 12867 chars
+    📝 Logged prompt to: WITHDRAWAL_SERVICE_COMPREHENSIVE_9_architect_20251203_222839.json
+    🔍 Found 3 issues.
+      ✅ Comment posted on services/withdrawal_service.py:26
+      ✅ Comment posted on services/withdrawal_service.py:37
+      ✅ Comment posted on services/limit_checker.py:18
+
+3️⃣  [Apply Fixes] Implementing suggestions...
+    🤖 AI integrating 2 fixes into services/withdrawal_service.py...
+    🤖 AI integrating 1 fixes into services/limit_checker.py...
+    📤 Committing 2 fixed files to GitLab...
+    ✅ Changes pushed to feature branch.
+    🔀 Merging MR 1 into Main...
+    ✅ MR Merged successfully.
+
+    🧪 [POST-MERGE] Writing files and running Pytest...
+       📄 Wrote: README.md
+       📄 Wrote: database.py
+       📄 Wrote: models.py
+       📄 Wrote: exceptions.py
+       📄 Wrote: tests/__init__.py
+       📄 Wrote: tests/conftest.py
+       📄 Wrote: tests/test_withdrawal_service.py
+       📄 Wrote: tests/test_fee_calculator.py
+       📄 Wrote: tests/test_limit_checker.py
+       📄 Wrote: tests/test_transaction_logger.py
+       📄 Wrote: services/withdrawal_service.py
+       📄 Wrote: services/fee_calculator.py
+       📄 Wrote: services/limit_checker.py
+       📄 Wrote: services/transaction_logger.py
+       📄 Wrote: services/__init__.py
+       🔍 Running pytest in: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpahmf_k5e
+       🔍 PYTHONPATH set to: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpahmf_k5e
+
+       📋 Test Output:
+       ============================= test session starts ==============================
+       platform darwin -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0 -- /Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/bin/python3
+       cachedir: .pytest_cache
+       rootdir: /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpahmf_k5e
+       plugins: anyio-4.12.0
+       collecting ... collected 61 items
+       
+       tests/test_fee_calculator.py::TestFeeCalculatorBasic::test_standard_account_fee_rate FAILED [  1%]
+       tests/test_fee_calculator.py::TestFeeCalculatorBasic::test_premium_account_fee_rate FAILED [  3%]
+       tests/test_fee_calculator.py::TestFeeCalculatorBasic::test_business_account_fee_rate FAILED [  4%]
+       tests/test_fee_calculator.py::TestFeeCalculatorMinimums::test_standard_minimum_fee PASSED [  6%]
+       tests/test_fee_calculator.py::TestFeeCalculatorMinimums::test_premium_no_minimum_fee PASSED [  8%]
+       tests/test_fee_calculator.py::TestFeeCalculatorMinimums::test_business_minimum_fee PASSED [  9%]
+       tests/test_fee_calculator.py::TestFeeCalculatorMaximums::test_standard_maximum_fee FAILED [ 11%]
+       tests/test_fee_calculator.py::TestFeeCalculatorMaximums::test_premium_maximum_fee FAILED [ 13%]
+       tests/test_fee_calculator.py::TestFeeCalculatorMaximums::test_business_maximum_fee FAILED [ 14%]
+       tests/test_fee_calculator.py::TestFeeCalculatorThreshold::test_below_free_threshold PASSED [ 16%]
+       tests/test_fee_calculator.py::TestFeeCalculatorThreshold::test_at_free_threshold FAILED [ 18%]
+       tests/test_fee_calculator.py::TestFeeCalculatorThreshold::test_above_free_threshold PASSED [ 19%]
+       tests/test_fee_calculator.py::TestFeeCalculatorUnknownAccountType::test_unknown_account_type_raises_error FAILED [ 21%]
+       ✅ Passed: 39/61
+       ❌ Failed: 22/61
+
+    🧪 [POST-FIX] Writing files and running Pytest...
+       📄 Wrote: README.md
+       📄 Wrote: database.py
+       📄 Wrote: models.py
+       📄 Wrote: exceptions.py
+       📄 Wrote: tests/__init__.py
+       📄 Wrote: tests/conftest.py
+       📄 Wrote: tests/test_withdrawal_service.py
+       📄 Wrote: tests/test_fee_calculator.py
+       📄 Wrote: tests/test_limit_checker.py
+       📄 Wrote: tests/test_transaction_logger.py
+       📄 Wrote: services/withdrawal_service.py
+       📄 Wrote: services/fee_calculator.py
+       📄 Wrote: services/limit_checker.py
+       📄 Wrote: services/transaction_logger.py
+       📄 Wrote: services/__init__.py
+       🔍 Running pytest in: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpahmf_k5e
+       🔍 PYTHONPATH set to: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpahmf_k5e
+
+       📋 Test Output:
+       ============================= test session starts ==============================
+       platform darwin -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0 -- /Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/bin/python3
+       cachedir: .pytest_cache
+       rootdir: /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpahmf_k5e
+       plugins: anyio-4.12.0
+       collecting ... collected 61 items
+       
+       tests/test_fee_calculator.py::TestFeeCalculatorBasic::test_standard_account_fee_rate FAILED [  1%]
+       tests/test_fee_calculator.py::TestFeeCalculatorBasic::test_premium_account_fee_rate FAILED [  3%]
+       tests/test_fee_calculator.py::TestFeeCalculatorBasic::test_business_account_fee_rate FAILED [  4%]
+       tests/test_fee_calculator.py::TestFeeCalculatorMinimums::test_standard_minimum_fee PASSED [  6%]
+       tests/test_fee_calculator.py::TestFeeCalculatorMinimums::test_premium_no_minimum_fee PASSED [  8%]
+       tests/test_fee_calculator.py::TestFeeCalculatorMinimums::test_business_minimum_fee PASSED [  9%]
+       tests/test_fee_calculator.py::TestFeeCalculatorMaximums::test_standard_maximum_fee FAILED [ 11%]
+       tests/test_fee_calculator.py::TestFeeCalculatorMaximums::test_premium_maximum_fee FAILED [ 13%]
+       tests/test_fee_calculator.py::TestFeeCalculatorMaximums::test_business_maximum_fee FAILED [ 14%]
+       tests/test_fee_calculator.py::TestFeeCalculatorThreshold::test_below_free_threshold PASSED [ 16%]
+       tests/test_fee_calculator.py::TestFeeCalculatorThreshold::test_at_free_threshold FAILED [ 18%]
+       tests/test_fee_calculator.py::TestFeeCalculatorThreshold::test_above_free_threshold PASSED [ 19%]
+       tests/test_fee_calculator.py::TestFeeCalculatorUnknownAccountType::test_unknown_account_type_raises_error FAILED [ 21%]
+       ✅ Passed: 39/61
+       ❌ Failed: 22/61
+
+4️⃣  [Results] Posting benchmark...
+    ✅ Results posted
+    💀 SCENARIO FAILED (WITH CONTEXT)
+
+👋 Cleaned up local temp files.
+
+============================================================
+▶️  RUNNING CASE 11/11: TRANSFER_LOGIC_ERROR_10
+    Source: scenarios9.py
+============================================================
+📁 Local Test Environment created at: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmp2n5jfh75
+🧹 Cleaning up old projects...
+   ✅ Deleted TRANSFER_LOGIC_ERROR_10
+
+1️⃣  [Setup] Creating GitLab Repo & MR...
+   ✅ Created: https://gitlab.com/vladimiralbrekhtccr-group/TRANSFER_LOGIC_ERROR_10-1764782953
+   ✅ MR created: https://gitlab.com/vladimiralbrekhtccr-group/TRANSFER_LOGIC_ERROR_10-1764782953/-/merge_requests/1
+
+📊 [Context Generation] Analyzing repository...
+📊 Analyzing repository: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmpeqbxut1n
+   📁 Found 5 relevant files
+   ✅ Selected 5 files for context
+   ✅ Analyzed 5 files
+🤖 Generating repository context with LLM...
+   Using: Google Gemini - gemini-flash-latest
+   ✅ Generated context (1828 characters)
+   ✅ Generated 1828 character context
+
+    🧪 [PRE-FIX] Writing files and running Pytest...
+       📄 Wrote: README.md
+       📄 Wrote: database.py
+       📄 Wrote: models.py
+       📄 Wrote: tests/test_services.py
+       📄 Wrote: tests/test_validators.py
+       📄 Wrote: services.py
+       📄 Wrote: validators.py
+       🔍 Running pytest in: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmp2n5jfh75
+       🔍 PYTHONPATH set to: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmp2n5jfh75
+
+       📋 Test Output:
+       ============================= test session starts ==============================
+       platform darwin -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0 -- /Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/bin/python3
+       cachedir: .pytest_cache
+       rootdir: /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmp2n5jfh75
+       plugins: anyio-4.12.0
+       collecting ... collected 6 items
+       
+       tests/test_services.py::test_transfer_success FAILED                     [ 16%]
+       tests/test_services.py::test_transfer_exact_balance FAILED               [ 33%]
+       tests/test_services.py::test_transfer_insufficient_funds PASSED          [ 50%]
+       tests/test_validators.py::test_frozen_sender_rejected FAILED             [ 66%]
+       tests/test_validators.py::test_frozen_receiver_rejected FAILED           [ 83%]
+       tests/test_validators.py::test_negative_amount_rejected PASSED           [100%]
+       
+       =================================== FAILURES ===================================
+       ____________________________ test_transfer_success _____________________________
+       tests/test_services.py:28: in test_transfer_success
+           assert receiver.balance == Decimal("300.00"), f"Receiver should have 300, got {receiver.balance}"
+       E   AssertionError: Receiver should have 300, got 100.00
+       E   assert Decimal('100.00') == Decimal('300.00')
+       ✅ Passed: 2/6
+       ❌ Failed: 4/6
+
+2️⃣  [Agent Lead] Executive Review...
+    📝 Logged prompt to: TRANSFER_LOGIC_ERROR_10_lead_20251203_222933.json
+    📝 Decision: CHANGES_REQUESTED
+    ⚠️  Risk: CRITICAL
+
+🧠 [Agent Architect] Analyzing Logic WITH CONTEXT...
+    ℹ️  CTO Directives: Check for the use of explicit database transactions (BEGIN/COMMIT/ROLLBACK) and ensure the entire debit and credit operation is wrapped atomically. Verify that both the debit (`from_account.balance - amount`) and the credit (`to_account.balance + amount`) operations are present and executed within the same transaction block. Specifically, check for missing credit logic and the absence of database locking mechanisms (e.g., `SELECT FOR UPDATE`) to prevent concurrent updates.
+    📚 Context Length: 1828 chars
+    📝 Diff Length: 1267 chars
+    📝 Logged prompt to: TRANSFER_LOGIC_ERROR_10_architect_20251203_222937.json
+    🔍 Found 3 issues.
+      ✅ Comment posted on services.py:9
+      ✅ Comment posted on services.py:19
+      ✅ Comment posted on validators.py:10
+
+3️⃣  [Apply Fixes] Implementing suggestions...
+    🤖 AI integrating 2 fixes into services.py...
+    🤖 AI integrating 1 fixes into validators.py...
+    📤 Committing 2 fixed files to GitLab...
+    ✅ Changes pushed to feature branch.
+    🔀 Merging MR 1 into Main...
+    ✅ MR Merged successfully.
+
+    🧪 [POST-MERGE] Writing files and running Pytest...
+       📄 Wrote: README.md
+       📄 Wrote: database.py
+       📄 Wrote: models.py
+       📄 Wrote: tests/test_services.py
+       📄 Wrote: tests/test_validators.py
+       📄 Wrote: services.py
+       📄 Wrote: validators.py
+       🔍 Running pytest in: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmp2n5jfh75
+       🔍 PYTHONPATH set to: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmp2n5jfh75
+
+       📋 Test Output:
+       ============================= test session starts ==============================
+       platform darwin -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0 -- /Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/bin/python3
+       cachedir: .pytest_cache
+       rootdir: /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmp2n5jfh75
+       plugins: anyio-4.12.0
+       collecting ... collected 6 items
+       
+       tests/test_services.py::test_transfer_success PASSED                     [ 16%]
+       tests/test_services.py::test_transfer_exact_balance PASSED               [ 33%]
+       tests/test_services.py::test_transfer_insufficient_funds PASSED          [ 50%]
+       tests/test_validators.py::test_frozen_sender_rejected FAILED             [ 66%]
+       tests/test_validators.py::test_frozen_receiver_rejected FAILED           [ 83%]
+       tests/test_validators.py::test_negative_amount_rejected PASSED           [100%]
+       
+       =================================== FAILURES ===================================
+       _________________________ test_frozen_sender_rejected __________________________
+       tests/test_validators.py:25: in test_frozen_sender_rejected
+           assert result["valid"] is False, "Frozen accounts should not send funds"
+       E   AssertionError: Frozen accounts should not send funds
+       E   assert True is False
+       ✅ Passed: 4/6
+       ❌ Failed: 2/6
+
+    🧪 [POST-FIX] Writing files and running Pytest...
+       📄 Wrote: README.md
+       📄 Wrote: database.py
+       📄 Wrote: models.py
+       📄 Wrote: tests/test_services.py
+       📄 Wrote: tests/test_validators.py
+       📄 Wrote: services.py
+       📄 Wrote: validators.py
+       🔍 Running pytest in: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmp2n5jfh75
+       🔍 PYTHONPATH set to: /var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmp2n5jfh75
+
+       📋 Test Output:
+       ============================= test session starts ==============================
+       platform darwin -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0 -- /Users/rakhat/Documents/Forte_Hackaton/the_cat_pyjamas/.venv/bin/python3
+       cachedir: .pytest_cache
+       rootdir: /private/var/folders/xk/zpf4x2ln0_n2cd2gvn_g2fy00000gn/T/tmp2n5jfh75
+       plugins: anyio-4.12.0
+       collecting ... collected 6 items
+       
+       tests/test_services.py::test_transfer_success PASSED                     [ 16%]
+       tests/test_services.py::test_transfer_exact_balance PASSED               [ 33%]
+       tests/test_services.py::test_transfer_insufficient_funds PASSED          [ 50%]
+       tests/test_validators.py::test_frozen_sender_rejected FAILED             [ 66%]
+       tests/test_validators.py::test_frozen_receiver_rejected FAILED           [ 83%]
+       tests/test_validators.py::test_negative_amount_rejected PASSED           [100%]
+       
+       =================================== FAILURES ===================================
+       _________________________ test_frozen_sender_rejected __________________________
+       tests/test_validators.py:25: in test_frozen_sender_rejected
+           assert result["valid"] is False, "Frozen accounts should not send funds"
+       E   AssertionError: Frozen accounts should not send funds
+       E   assert True is False
+       ✅ Passed: 4/6
+       ❌ Failed: 2/6
+
+4️⃣  [Results] Posting benchmark...
+    ✅ Results posted
+    💀 SCENARIO FAILED (WITH CONTEXT)
+
+👋 Cleaned up local temp files.
+
+============================================================
+🏁  SUITE COMPLETE (WITH CONTEXT)
+============================================================
+⏱️  Duration: 551.94s
+✅ Passed: 5/11
+❌ Failed: 5/11
+⚠️  Errors: 1/11
+
+Details:
+✅ DEPOSIT_LOGIC_ERROR_1          | PASS | https://gitlab.com/vladimiralbrekhtccr-group/DEPOSIT_LOGIC_ERROR_1-1764782464/-/merge_requests/1
+✅ MUTABLE_DEFAULT_ARG_TRAP       | PASS | https://gitlab.com/vladimiralbrekhtccr-group/MUTABLE_DEFAULT_ARG_TRAP-1764782524/-/merge_requests/1
+✅ OBJECT_REFERENCE_TRAP          | PASS | https://gitlab.com/vladimiralbrekhtccr-group/OBJECT_REFERENCE_TRAP-1764782573/-/merge_requests/1
+❌ FOREX_PRECISION_CASCADE        | FAIL | https://gitlab.com/vladimiralbrekhtccr-group/FOREX_PRECISION_CASCADE-1764782624/-/merge_requests/1
+⚠️ DIRTY_SESSION_ROLLBACK         | CRASH | N/A
+✅ TRANSFER_FUNDS_LOGIC_ERROR     | PASS | https://gitlab.com/vladimiralbrekhtccr-group/TRANSFER_FUNDS_LOGIC_ERROR-1764782696/-/merge_requests/1
+❌ INTEREST_CALCULATION_ERROR     | FAIL | https://gitlab.com/vladimiralbrekhtccr-group/INTEREST_CALCULATION_ERROR-1764782744/-/merge_requests/1
+✅ CURRENCY_CONVERSION_ERROR      | PASS | https://gitlab.com/vladimiralbrekhtccr-group/CURRENCY_CONVERSION_ERROR-1764782789/-/merge_requests/1
+❌ WITHDRAWAL_LOGIC_ERROR_8       | FAIL | https://gitlab.com/vladimiralbrekhtccr-group/WITHDRAWAL_LOGIC_ERROR_8-1764782840/-/merge_requests/1
+❌ WITHDRAWAL_SERVICE_COMPREHENSIVE_9 | FAIL | https://gitlab.com/vladimiralbrekhtccr-group/WITHDRAWAL_SERVICE_COMPREHENSIVE_9-1764782892/-/merge_requests/1
+❌ TRANSFER_LOGIC_ERROR_10        | FAIL | https://gitlab.com/vladimiralbrekhtccr-group/TRANSFER_LOGIC_ERROR_10-1764782953/-/merge_requests/1
