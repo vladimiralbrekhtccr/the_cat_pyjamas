@@ -24,6 +24,7 @@ GITLAB_URL = "https://gitlab.com"
 PROJECT_ID = "vladimiralbrekhtccr-group/confluent-kafka-go-temp-123456" 
 SOURCE_BRANCH = "feature/full-mr-replay"
 CHECK_INTERVAL = 10 
+DEFAULT_LOCAL_URL = "http://localhost:6655/v1"
 
 # Hardcoded commits for the Initial Demo Review
 TARGET_COMMITS = [
@@ -33,7 +34,7 @@ TARGET_COMMITS = [
 
 class UnifiedBot:
     
-    def __init__(self, provider_type="gemini"):
+    def __init__(self, provider_type="gemini", local_url=DEFAULT_LOCAL_URL):
         # 1. Setup GitLab
         self.gl = gitlab.Gitlab(GITLAB_URL, private_token=os.getenv("GITLAB_TOKEN"))
         self.project = self.gl.projects.get(PROJECT_ID)
@@ -44,9 +45,10 @@ class UnifiedBot:
 
         # 3. Setup LLM Provider
         if provider_type == "local":
+            print(f"🔌 Connecting to Local LLM at: {local_url}")
             self.llm = OpenAIProvider(
                 api_key="EMPTY", 
-                base_url="http://localhost:6655/v1", 
+                base_url=local_url,  # <--- USES THE ARGUMENT HERE
                 model_name="qwen3_30b_deployed"
             )
         elif provider_type == "openai":
@@ -323,7 +325,12 @@ class UnifiedBot:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--provider", type=str, default="gemini", choices=["gemini", "local", "openai"], help="LLM Provider")
+    
+    # NEW ARGUMENT
+    parser.add_argument("--local_url", type=str, default=DEFAULT_LOCAL_URL, help="Base URL for local LLM")
+    
     args = parser.parse_args()
 
-    bot = UnifiedBot(provider_type=args.provider)
+    # Pass the argument to the class
+    bot = UnifiedBot(provider_type=args.provider, local_url=args.local_url)
     bot.start_listening()

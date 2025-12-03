@@ -25,24 +25,26 @@ load_dotenv()
 # --- CONFIGURATION DEFAULTS ---
 GITLAB_URL = "https://gitlab.com"
 DEFAULT_GROUP = "evaluation_pipeline_test" 
+DEFAULT_LOCAL_URL = "http://localhost:6655/v1"
 
 class UnifiedPipeline:
     
-    def __init__(self, provider_type="gemini", group_path=DEFAULT_GROUP):
-        self.gl = gitlab.Gitlab(GITLAB_URL, private_token=os.getenv("GITLAB_TOKEN"))
+    def __init__(self, provider_type="gemini", group_path=DEFAULT_GROUP, local_url=DEFAULT_LOCAL_URL):
+        self.gl = gitlab.Gitlab(GITLAB_URL, private_token=os.getenv("GITLAB_TOKEN_TESTING"))
         self.local_temp_dir = tempfile.mkdtemp()
         self.project = None
-        self.group_path = group_path # Store the group path
+        self.group_path = group_path 
         
         # 1. GET USER ID FROM ENV (for safe concurrent running)
         self.user_id = os.getenv("GITLAB_USER_ID", "anon")
 
         # 2. INITIALIZE CHOSEN PROVIDER
         if provider_type == "local":
+            print(f"🔌 Connecting to Local LLM at: {local_url}")
             self.llm = OpenAIProvider(
                 api_key="EMPTY", 
-                base_url="http://localhost:6655/v1", 
-                model_name="qwen3_30b_deployed"
+                base_url=local_url,  # <--- USES THE ARGUMENT HERE
+                model_name="qwen3_30b_deployed" # You might want to param this too eventually
             )
         elif provider_type == "openai":
             self.llm = OpenAIProvider(
@@ -61,14 +63,12 @@ class UnifiedPipeline:
 
     def cleanup(self, project_name_filter="bank-unified"):
         """Delete old repos belonging to this specific user."""
-        # Filter specifically for this user to avoid deleting others' work
         user_specific_filter = f"{project_name_filter}-{self.user_id}"
         
         print(f"\n🧹 [Cleanup] Checking for old projects matching: '{user_specific_filter}'...")
         try:
             projects = self.gl.projects.list(search=user_specific_filter, simple=True, get_all=False)
             for p in projects:
-                # Double check naming safety
                 if self.user_id in p.name:
                     print(f"   - Deleting {p.name}...")
                     p.delete()
@@ -82,13 +82,11 @@ class UnifiedPipeline:
 
     # --- 1. SETUP REPO ---
     def setup_repo_and_mr(self, scenario_name, scenario_data, base_files):
-        # Append User ID to project name
         project_name = f"{scenario_name}-{self.user_id}-{int(time.time())}"
         
         print(f"\n🏗️  Creating Repo: {project_name}...")
         
         try:
-            # Try to create in the specified Group
             group = self.gl.groups.get(self.group_path)
             self.project = self.gl.projects.create({'name': project_name, 'namespace_id': group.id})
         except Exception as e:
@@ -442,6 +440,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--provider", type=str, default="gemini", choices=["gemini", "local", "openai"], help="Which LLM to use")
     
+    # NEW ARGUMENT FOR LOCAL URL
+    parser.add_argument("--local_url", type=str, default="http://localhost:6655/v1", help="Base URL for local LLM")
+
     # Default to Environment Variable, if not set, default to hardcoded string
     default_group = os.getenv("GITLAB_GROUP_PATH", "evaluation_pipeline_test")
     parser.add_argument("--group_path", type=str, default=default_group, help="GitLab Group namespace to create repos in")
@@ -458,7 +459,6 @@ if __name__ == "__main__":
 
     print(f"\n🚀 STARTING SUITE using [{args.provider.upper()}] in Group [{args.group_path}]")
     
-    # 1. ADD 'details' LIST HERE
     stats = {"total": 0, "passed": 0, "failed": 0, "errors": 0, "details": []}
     
     for index, case in enumerate(all_cases):
@@ -469,13 +469,17 @@ if __name__ == "__main__":
         mr_link = "N/A"
         case_result = "ERROR"
 
-        pipeline = UnifiedPipeline(provider_type=args.provider, group_path=args.group_path)
+        # PASS LOCAL URL HERE
+        pipeline = UnifiedPipeline(
+            provider_type=args.provider, 
+            group_path=args.group_path,
+            local_url=args.local_url 
+        )
         
         try:
             pipeline.cleanup(project_name_filter=case['id'])
             mr, file_map = pipeline.setup_repo_and_mr(case['id'], case['data'], case['base_files'])
             
-            # Capture MR Link
             mr_link = mr.web_url
 
             pre_result = pipeline.run_local_tests(file_map, "PRE-FIX")
@@ -503,7 +507,6 @@ if __name__ == "__main__":
         
         finally:
             pipeline.finish()
-            # 2. SAVE DETAILS FOR THIS CASE
             stats["details"].append({
                 "scenario": case['id'], 
                 "result": case_result, 
@@ -517,12 +520,10 @@ if __name__ == "__main__":
     print(f"📊  Total: {stats['total']} | ✅ Pass: {stats['passed']} | ❌ Fail: {stats['failed']} | ⚠️ Err: {stats['errors']}")
     print("-" * 80)
     
-    # 3. PRINT THE TABLE
     print(f"{'STATUS':<8} | {'SCENARIO ID':<40} | {'MR LINK'}")
     print("-" * 80)
     for det in stats["details"]:
         icon = "✅" if det['result'] == "PASS" else ("❌" if det['result'] == "FAIL" else "⚠️")
         print(f"{icon} {det['result']:<5} | {det['scenario']:<40} | {det['mr_url']}")
     print("-" * 80)
-
     print(f"\n🏁  COMPLETE. Pass: {stats['passed']} | Fail: {stats['failed']}")
