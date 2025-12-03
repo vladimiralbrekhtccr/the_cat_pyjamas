@@ -6,4 +6,5 @@ pyngrok
 # below are requirments for testing
 pytest
 dotenv
+openai
 # sqlalchemy # for testing, will change to use docker later

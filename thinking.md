@@ -33,3 +33,57 @@ While out short-term memory was filled with the problem we want to receive some 
 3. Nartay's pipeline 2.0 with <Thinking model>.
 4. Experiment with Qwen3_30B_A3-fp-8 model because that will fit into 4090 GPU what might be huge advantage.
 5. Prepare the speech and presentation.
+6. Fine-tune Lora/model on small dataset with our instruction following format, such that we will show we can adapt the model for your specific case and on table show before fine-tuning and after how model started to produce more consistent scripts and following insturciton better. 
+
+
+
+# The structure of the project
+
+
+
+## Core
+We have a BOT that monitors foe new MRs.
+
+input from gitlab -->Agent A --> Agent B --> Output on gitlab
+
+Agent A (lead)
+Input:
+1. MR diff / short_description / title
+2. Possible to add the 
+Output:
+1. Review.
+
+
+Agent B (coder)
+Input:
+1. MR diff / short_description / title
+2. Review from the Agent A
+Output:
+1. Code suggestions
+
+#TODOs:
+1. Self-reflection after Agent B finishes.
+2. 
+
+
+
+
+
+## Eval
+
+We have a seperate evaluation pipeline that uses this bot logic to evaluate different providers/models.
+Input for this evaluation pipeline should be API from the bot right?
+
+1. Generate repo
+2. Generate MR
+3. Generate tests?
+4. ???
+
+
+
+
+
+### What we want to improve:
+
+1. Make webhooks using github repository internal webhooks.
+2. 
