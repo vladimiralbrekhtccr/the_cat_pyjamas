@@ -1,6 +1,6 @@
 
 PROVIDER="local" #  [local, gemini]
-GROUP_PATH="evaluation_pipeline_test" #
+GROUP_PATH="vladimiralbrekhtccr-group" #
 
 python src/evaluation/run_evaluation.py \
     --provider $PROVIDER \
