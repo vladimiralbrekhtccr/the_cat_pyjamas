@@ -239,7 +239,7 @@ Always included if present:
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                    USER INPUT                                   │
-│  (Git URL or Local Path) + (LLM Provider Config)              │
+│  (Git URL or Local Path) + (LLM Provider Config)                │
 └──────────────────────┬──────────────────────────────────────────┘
                        │
                        ▼
@@ -247,9 +247,9 @@ Always included if present:
 │              repo_context_pipeline.py                           │
 │                  (Main Orchestrator)                            │
 │                                                                 │
-│  1. Accepts LLM client instance (provider-agnostic)            │
-│  2. Coordinates the entire workflow                            │
-│  3. Manages output file creation                               │
+│  1. Accepts LLM client instance (provider-agnostic)             │
+│  2. Coordinates the entire workflow                             │
+│  3. Manages output file creation                                │
 └──────────────────────┬──────────────────────────────────────────┘
                        │
                        ├─────────────────┐
@@ -271,9 +271,9 @@ Always included if present:
          │                                   │
          │    STEP 2: GENERATE CONTEXT       │
          │    • Build structured prompt      │
-         │    • Call LLM via client         │
-         │    • Parse response              │
-         │    • Fallback on errors          │
+         │    • Call LLM via client          │
+         │    • Parse response               │
+         │    • Fallback on errors           │
          └─────────────────┬─────────────────┘
                            │
                            ▼
