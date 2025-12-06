@@ -15,7 +15,6 @@ GITLAB_URL = "https://gitlab.com"
 PROJECT_ID = "vladimiralbrekhtccr-group/confluent-kafka-go-temp-123456"
 SOURCE_BRANCH = "feature/full-mr-replay"
 TARGET_BRANCH = "main"
-GEMINI_MODEL = "gemini-flash-latest"
 
 # Specific commits to include in the MR
 TARGET_COMMITS = [

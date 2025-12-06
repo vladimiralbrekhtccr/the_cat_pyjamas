@@ -26,11 +26,9 @@ class GeminiProvider(BaseLLMProvider):
         config = types.GenerateContentConfig(
             temperature=temperature,
             max_output_tokens=4000,
-            #TODO: in future to play with params to test which one will score more on our evals?
-            thinking_config={'thinking_budget': 0} # Disable thinking for standard models
+            thinking_config={'thinking_budget': 0} 
         )
         
-        #TODO: replace this to just not_streaming logic lol
         try:
             full_text = ""
             for chunk in self.client.models.generate_content_stream(
@@ -43,7 +41,11 @@ class GeminiProvider(BaseLLMProvider):
             return "{}"
 
     def _clean_response(self, text):
-        # Basic markdown cleaning
+        # 1. Handle Chain of Thought / Thinking models
+        if "</think>" in text:
+            text = text.split("</think>")[-1]
+
+        # 2. Basic markdown cleaning
         text = text.strip()
         if text.startswith("```json"): text = text[7:]
         elif text.startswith("```"): text = text[3:]
@@ -51,7 +53,7 @@ class GeminiProvider(BaseLLMProvider):
         return text.strip()
 
 class OpenAIProvider(BaseLLMProvider):
-    """Provider for OpenAI or Local vLLM/Qwen"""
+    """Provider for OpenAI or Local vLLM/Qwen/DeepSeek"""
     def __init__(self, api_key, base_url, model_name):
         self.client = openai.Client(api_key=api_key, base_url=base_url)
         self.model_name = model_name
@@ -66,7 +68,7 @@ class OpenAIProvider(BaseLLMProvider):
                     {"role": "user", "content": user_content},
                 ],
                 temperature=temperature,
-                max_tokens=4000,
+                max_tokens=16000,
                 extra_body={
                     "top_p": 0.8,
                     "top_k": 20,
@@ -80,6 +82,13 @@ class OpenAIProvider(BaseLLMProvider):
             return "{}"
 
     def _clean_response(self, text):
+        # 1. REMOVE THINKING PROCESS
+        # If the model outputs <think>...</think>, we only want what comes AFTER.
+        if "</think>" in text:
+            # Split by the closing tag and take the last part
+            text = text.split("</think>")[-1]
+
+        # 2. Basic markdown cleaning
         text = text.strip()
         if text.startswith("```json"): text = text[7:]
         elif text.startswith("```"): text = text[3:]
